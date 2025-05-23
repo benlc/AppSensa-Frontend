@@ -39,7 +39,7 @@ export default function LandingPage() {
           <div className="container px-4 md:px-6">
             <div className="flex flex-col items-center text-center space-y-4 md:space-y-8">
               <div className="flex items-center justify-center">
-                <Eye className="h-8 w-8 text-primary" />
+                <img src="/logo.svg" alt="App Sensa Logo" width={40} height={40} className="inline-block align-middle" />
                 <span className="ml-2 text-2xl font-bold">App Sensa</span>
               </div>
 
@@ -53,13 +53,13 @@ export default function LandingPage() {
                 </p>
               </div>
 
-              {/* <Image
-                src="/competitive-intelligence-dashboard.png"
+              <Image
+                src="/appsensa_preview_1.png"
                 width={800}
                 height={500}
                 alt="App Sensa Dashboard Preview"
                 className="mx-auto rounded-xl shadow-lg border border-border"
-              /> */}
+              />
 
               <Card className="w-full max-w-md mt-8">
                 <CardContent className="pt-6">
@@ -133,7 +133,7 @@ export default function LandingPage() {
       <footer className="py-6 w-full shrink-0 items-center px-4 md:px-6 border-t">
         <div className="container flex flex-col items-center justify-center gap-4 text-center">
           <div className="flex items-center gap-2">
-            <Eye className="h-5 w-5 text-primary" />
+            <img src="/logo.svg" alt="App Sensa Logo" width={32} height={32} className="inline-block align-middle" />
             <span className="font-semibold">App Sensa</span>
           </div>
           <p className="text-xs text-muted-foreground">
