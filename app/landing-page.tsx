@@ -1,11 +1,37 @@
+"use client"
+
+import { useState } from "react"
 import Image from "next/image"
-import { ArrowRight, Eye } from "lucide-react"
+import { ArrowRight, Check, Eye, Loader2 } from "lucide-react"
 
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Card, CardContent } from "@/components/ui/card"
+import { Alert, AlertDescription } from "@/components/ui/alert"
+import { subscribeToWaitlist } from "@/actions/waitlist"
 
 export default function LandingPage() {
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [result, setResult] = useState<{ success: boolean; message: string } | null>(null)
+
+  async function handleSubmit(formData: FormData) {
+    setIsSubmitting(true)
+    setResult(null)
+
+    try {
+      const response = await subscribeToWaitlist(formData)
+      setResult(response)
+    } catch (error) {
+      console.error("Waitlist join error:", error)
+      setResult({
+        success: false,
+        message: "Something went wrong. Please try again.",
+      })
+    } finally {
+      setIsSubmitting(false)
+    }
+  }
+
   return (
     <div className="flex min-h-screen flex-col">
       <main className="flex-1">
@@ -42,10 +68,42 @@ export default function LandingPage() {
                     <p className="text-center text-muted-foreground">
                       Be among the first to gain this competitive advantage. Limited spots available.
                     </p>
-                    <form className="space-y-4">
-                      <Input type="email" placeholder="Enter your email" className="w-full" required />
-                      <Button type="submit" className="w-full gap-1">
-                        Join Waitlist <ArrowRight className="h-4 w-4" />
+
+                    {result && (
+                      <Alert
+                        className={
+                          result.success
+                            ? "bg-green-50 text-green-800 border-green-200"
+                            : "bg-red-50 text-red-800 border-red-200"
+                        }
+                      >
+                        <AlertDescription className="flex items-center gap-2">
+                          {result.success && <Check className="h-4 w-4" />}
+                          {result.message}
+                        </AlertDescription>
+                      </Alert>
+                    )}
+
+                    <form action={handleSubmit} className="space-y-4">
+                      <Input
+                        type="email"
+                        name="email"
+                        placeholder="Enter your email"
+                        className="w-full"
+                        required
+                        disabled={isSubmitting}
+                      />
+                      <Button type="submit" className="w-full gap-1" disabled={isSubmitting}>
+                        {isSubmitting ? (
+                          <>
+                            <Loader2 className="h-4 w-4 animate-spin" />
+                            Joining...
+                          </>
+                        ) : (
+                          <>
+                            Join Waitlist <ArrowRight className="h-4 w-4" />
+                          </>
+                        )}
                       </Button>
                     </form>
                   </div>
