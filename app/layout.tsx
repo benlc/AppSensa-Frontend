@@ -7,8 +7,8 @@ import { ThemeProvider } from "@/theme-provider"
 const inter = Inter({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
-  title: "AppDiff - Android App Analysis",
-  description: "Compare and analyze Android app versions",
+  title: "App Sensa - App Intelligence",
+  description: "Compare and analyze app versions",
     generator: 'v0.dev'
 }
 
