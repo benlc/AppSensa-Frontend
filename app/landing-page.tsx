@@ -53,13 +53,13 @@ export default function LandingPage() {
                 </p>
               </div>
 
-              <Image
+              {/* <Image
                 src="/competitive-intelligence-dashboard.png"
                 width={800}
                 height={500}
                 alt="App Sensa Dashboard Preview"
                 className="mx-auto rounded-xl shadow-lg border border-border"
-              />
+              /> */}
 
               <Card className="w-full max-w-md mt-8">
                 <CardContent className="pt-6">
